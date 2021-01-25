@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Ruangguru Super App: Bimbel Online No. 1 di Indonesia</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="owl.carousel.min.css" media="screen and (max-width: 600px)">
-    <link rel="stylesheet" href="owl.theme.default.min.css" media="screen and (max-width: 600px)">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css" media="screen and (max-width: 600px)">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css" media="screen and (max-width: 600px)">
   </head>
   <body>
     <section class="section1">
@@ -125,9 +125,9 @@
       <div class="footer">
         <div class="shape-3">
           <div class="shape3-left-content">
-            <h1 class="footer-h1">Lorem Ipsum is simply dummy text</h1>
-            <p style="padding-top:1.563vw" class="footer-text color1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an </p>
-            <img style="padding-top:0.859vw" class="image-5" src="img/image 50.svg" alt="image 50">
+            <h1 class="footer-h1 footer-tac">Lorem Ipsum is simply dummy text</h1>
+            <p class="footer-text footer-tac footer-text-pt color1">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an </p>
+            <img class="image-5 footer-image-pt" src="img/image 50.svg" alt="image 50">
           </div>
           <div class="shape3-right-content">
             <div class="shape3-box">
@@ -157,21 +157,38 @@
     </section>
   </body>
   <footer>
-    <script src="jquery-3.5.1.min.js"></script>
-    <script src="owl.carousel.min.js"></script>
+    <script src="js/jquery-3.5.1.min.js"></script>
+    <script src="js/owl.carousel.min.js"></script>
     <script type="text/javascript">
-    $(document).ready(function(){
-      $(".owl-carousel").owlCarousel({
-        loop:true,
-        autoplay:true,
-        autoplayTimeout:3000,
-        responsive:{
-            0:{
-                items:1
-            }
-        }
-      });
+    $(document).ready(function() {
+      if ( $(window).width() < 600 ) {
+        startCarousel();
+      } else {
+        $('.owl-carousel').addClass('off');
+      }
     });
+
+    $(window).resize(function() {
+        if ( $(window).width() < 600 ) {
+          startCarousel();
+        } else {
+          stopCarousel();
+        }
+    });
+
+    function startCarousel(){
+      $(".owl-carousel").owlCarousel({
+      items:1,
+      loop:true,
+      autoplay:true,
+      autoplayTimeout:3000,
+      });
+    }
+    function stopCarousel() {
+      var owl = $('.owl-carousel');
+      owl.trigger('destroy.owl.carousel');
+      owl.addClass('off');
+    }
     </script>
   </footer>
 </html>
